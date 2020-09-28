@@ -3,7 +3,7 @@ extends layout.pug
 block content
 
     h1 Update Book
-    form(action="", method="post")
+    form(action="/books/1", method="post")
         p
             label(for="title") Title
             input(type="text", name="title", id="title", value="A Brief History of Time")
@@ -18,7 +18,7 @@ block content
             input(type="text", name="year", id="year", value="1988")
         p
             input(type="submit", value="Update Book")
-    form(action="", method="post")
+    form(action="/books/1/delete", method="post")
         p
             a(href="/", class="button") Cancel
         p
