@@ -6,18 +6,40 @@ block content
     p
         a(href="/books/new" class="button") Create New Book
     if books.length > 0
-        table   
-            thead
-                tr
-                    th Title
-                    th Author
-                    th Genre
-                    th Year
-            tbody
-              each book in books
+        .container
+            form(action="/books" method="get").search-form
+                    .form-group
+                        div
+                            label(for="query") Search by title
+                        input(type="text", name="query" class="query")
+                        input(type="hidden", name="page" value="1")
+                        input(type="submit", value="Search" class="search-submit")
+
+            table   
+                thead
                     tr
-                        td
-                            a(href=`/books/${book.id}`)=book.title
-                        td=book.author
-                        td=book.genre   
-                        td=book.year
+                        th Title
+                        th Author
+                        th Genre
+                        th Year
+                tbody
+                each book in books
+                        tr
+                            td
+                                a(href=`/books/${book.id}`)=book.title
+                            td=book.author
+                            td=book.genre   
+                            td=book.year
+            .pages
+                if title === "Books"
+                    - let page = 1;
+                        while page <= links
+                            a(href=`/books/page/${page}` class=`${activePage == page ? 'page active': 'page'}`)= page++
+                if url
+                    - let page = 1;
+                        while page <= links
+                            - const regex = /&page=[1-9]*/g;
+                            if regex.test(url)
+                                a(href=`${url.replace(regex, `&page=${page}`)}` class=`${activePage == page ? 'page active': 'page'}`)= page++
+           
+                            

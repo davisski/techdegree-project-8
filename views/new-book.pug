@@ -3,6 +3,14 @@ extends layout.pug
 block content
 
     h1=title
+
+    if errors
+        div
+            h2(class="error") Oooops!
+            ul(class="error")
+                each error in errors
+                    li= error.message
+    
     form(action="/books/new", method="post")
         p
             label(for="title") Title 

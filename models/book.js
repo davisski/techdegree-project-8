@@ -1,5 +1,9 @@
 const Sequelize = require("sequelize");
 
+/**
+ * @extends {Book} - Extends Sequelize Model with all properties to it, and implemented validation for title and author.
+ *
+ */
 module.exports = (sequelize) => {
   class Book extends Sequelize.Model {}
   Book.init(
