@@ -45,10 +45,12 @@ app.use((err, req, res, next) => {
   if (err.status === 404) {
     res.status(err.status || 404);
     err.message = err.message;
+    console.log(err);
     return res.render("page-not-found", { error: err });
   } else if (err.status === 500) {
     err.status(err.status || 500);
     err.message = err.message;
+    console.log(err);
     res.render("error", { error: err });
   }
 });
